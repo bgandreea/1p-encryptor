@@ -7,8 +7,6 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.backends import default_backend
 from session import get_or_refresh_session
 
-from constants import ACCOUNT_SHORTHAND
-
 def get_session_token():
     return get_or_refresh_session()
 
