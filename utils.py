@@ -12,7 +12,7 @@ def get_session_token():
 
 def get_1password_field(item_name, field_label, session_token):
     result = subprocess.run(
-        ["op", "item", "get", item_name, f"--field=label={field_label}", f"--session={session_token}"],
+        ["op", "item", "get", item_name, f"--field=label={field_label}", "--reveal", f"--session={session_token}"],
         capture_output=True, text=True, shell=True
     )
     if result.returncode != 0:
@@ -20,7 +20,7 @@ def get_1password_field(item_name, field_label, session_token):
     return result.stdout.strip()
 
 def encrypt_file(password, input_path, output_path):
-    with open(input_path, "r", encoding="utf-8") as f:
+    with open(input_path, "rb") as f:
         message = f.read()
 
     salt = os.urandom(16)
@@ -31,8 +31,8 @@ def encrypt_file(password, input_path, output_path):
     key = kdf.derive(password.encode())
     aesgcm = AESGCM(key)
     nonce = os.urandom(12)
-    ciphertext = aesgcm.encrypt(nonce, message.encode(), None)
-    encrypted_data = base64.b64encode(salt + nonce + ciphertext).decode()
+    ciphertext = aesgcm.encrypt(nonce, message, None)
+    encrypted_data = base64.b64encode(salt + nonce + ciphertext).decode("utf-8")
 
     if os.path.exists(output_path):
         os.remove(output_path)
@@ -59,9 +59,9 @@ def decrypt_file(password, encrypted_path, output_path):
     key = kdf.derive(password.encode())
     aesgcm = AESGCM(key)
 
-    decrypted_data = aesgcm.decrypt(nonce, ciphertext, None).decode()
+    decrypted_data = aesgcm.decrypt(nonce, ciphertext, None)
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(output_path, "wb") as f:
         f.write(decrypted_data)
 
     print(f"✅ Decrypted file saved to: {output_path}")

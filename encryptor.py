@@ -6,6 +6,7 @@ def run_encryptor():
     session_token = get_session_token()
 
     password = get_1password_field(VAULT_ITEM_NAME, FIELD_ENCRYPTION_PASS, session_token)
+    print(repr(password))
     input_path = get_1password_field(VAULT_ITEM_NAME, FIELD_INPUT_LOCATION, session_token)
     output_path = get_1password_field(VAULT_ITEM_NAME, FIELD_OUTPUT_LOCATION, session_token)
 
