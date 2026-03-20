@@ -1,6 +1,6 @@
 # 1Password Encryptor
 
-Securely encrypt and decrypt files using AES-GCM with a password stored in your 1Password vault. This tool integrates with the 1Password CLI (`op`) to fetch secrets and manage session tokens automatically—including session caching.
+Securely encrypt and decrypt files using AES-GCM with a password stored in your 1Password vault. This tool integrates with the 1Password CLI (`op`) to fetch secrets and manage session tokens automatically - including session caching.
 
 ## Features
 
