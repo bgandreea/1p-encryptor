@@ -1,8 +1,8 @@
-# 🔐 1Password Encryptor
+# 1Password Encryptor
 
 Securely encrypt and decrypt files using AES-GCM with a password stored in your 1Password vault. This tool integrates with the 1Password CLI (`op`) to fetch secrets and manage session tokens automatically—including session caching.
 
-## 📦 Features
+## Features
 
 - AES-GCM encryption with PBKDF2 key derivation
 - Pulls credentials & paths securely from 1Password vault
@@ -12,7 +12,7 @@ Securely encrypt and decrypt files using AES-GCM with a password stored in your 
   - Use via CLI with flags (`--encrypt`, `--decrypt`)
 - Modular structure with clean separation of concerns
 
-## 🧱 Project Structure
+## Project Structure
 
 ```
 lp-encryptor/
@@ -26,7 +26,7 @@ lp-encryptor/
 └── .gitignore              # Ignores token, venv, IDE files, etc.
 ```
 
-## 🚀 Requirements
+## Requirements
 
 - Python 3.8+
 - [1Password CLI v2](https://developer.1password.com/docs/cli/)
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 > You may need to add the `op` CLI to your PATH on Windows.
 
-## 🔑 1Password Setup
+## 1Password Setup
 
 In your 1Password vault, create a new item (e.g. `EncryptionSecrets`) with these fields:
 
@@ -47,7 +47,7 @@ In your 1Password vault, create a new item (e.g. `EncryptionSecrets`) with these
 - `OUTPUT_LOCATION` – Path to save the encrypted result
 - `DECRYPTED_OUTPUT_LOCATION` – Where to write the decrypted output
 
-## 🧠 Session Token Management
+## Session Token Management
 
 This tool uses `.session_token` to cache your session between runs.
 
@@ -63,30 +63,30 @@ Add this to `.gitignore`:
 .session_token
 ```
 
-## ⚙️ Usage
+## Usage
 
-### 🔹 Encrypt
+### Encrypt
 ```bash
 python cli.py --encrypt
 ```
 
-### 🔹 Decrypt
+### Decrypt
 ```bash
 python cli.py --decrypt
 ```
 
-### 🔹 Burn input (future support)
+### Burn input (future support)
 ```bash
 python cli.py --burn
 ```
 
-## 🧪 Dev Mode (PyCharm)
+## Dev Mode (PyCharm)
 
 1. Open `encryptor.py` or `decryptor.py`
 2. Use the green run button (requires `.session_token`)
 3. No prompts, no stalls—just clean encrypted output
 
-## 📜 License
+## License
 
 MIT License  
 See `LICENSE` file for full terms.
